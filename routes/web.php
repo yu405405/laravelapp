@@ -12,6 +12,7 @@
 */
 
 use App\Http\Controllers\HelloController;
+use App\Http\Middleware\HelloMiddleware;
 
 Route::get('/', function () {
     return view('welcome');

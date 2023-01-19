@@ -3,16 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\HelloRequest;
+use Validator;
 
 class HelloController extends Controller
 {
-    public function index() {
-        $data = [
-            ['name' => '山田たろう', 'mail' => 'taro@yamada'],
-            ['name' => '田中はなこ', 'mail' => 'hanako@flower'],
-            ['name' => '鈴木さちこ', 'mail' => 'sachico@happy']
+    public function index(Request $request) {
+        if($request->hasCookie('msg')) {
+            $msg = 'Cookie: ' . $request->cookie('msg'); 
+        } else {
+            $msg = '※クッキーはありません。';
+        }
+        return view('hello.index', ['msg'=>$msg]);
+    }
+
+    public function post(Request $request) {
+        $validate_rule = [
+            'msg' => 'required'
         ];
-        $message = 'Hello';
-        return view('hello.index', ['data'=>$data, 'message' => $message]);
+        $this->validate($request, $validate_rule);
+        $msg = $request->msg;
+        $response = response()->view('hello.index', ['msg' => '「' . $msg . '」をクッキーに保存しました。']);
+        $response->cookie('msg', '$msg', 100);
+        return $response;
     }
 }
