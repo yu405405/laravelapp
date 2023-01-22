@@ -12,8 +12,8 @@ class CreatePeopleTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('mail');
-            $table->integer('age');
-            $table->timestamp();
+            $table->integer('Field4');
+            $table->timestamps();
         });
     }
 
