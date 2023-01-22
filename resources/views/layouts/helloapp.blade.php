@@ -31,6 +31,16 @@
             .content {
                 margin: 10px;
             }
+            th {
+                background-color: #999;
+                color: #fff;
+                padding: 5px 10px;
+            }
+            td {
+                border: solid 1px #aaa;
+                color: #999;
+                padding: 5px 10px;
+            }
             .footer {
                 text-align: right;
                 font-size: 10pt;
